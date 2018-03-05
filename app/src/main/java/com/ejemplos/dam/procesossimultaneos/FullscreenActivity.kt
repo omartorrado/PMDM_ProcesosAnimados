@@ -6,7 +6,9 @@ import android.os.Bundle
 import kotlinx.android.synthetic.main.activity_fullscreen.*
 import kotlinx.coroutines.experimental.Job
 import kotlinx.coroutines.experimental.android.UI
+import kotlinx.coroutines.experimental.delay
 import kotlinx.coroutines.experimental.launch
+import org.jetbrains.anko.contentView
 import kotlin.coroutines.experimental.CoroutineContext
 
 /**
@@ -30,6 +32,10 @@ class FullscreenActivity : AppCompatActivity() {
         // evento click en el cuadrado
         cuadrado.setOnClickListener {
             animarCuadrado()
+        }
+
+        ciudad.setOnClickListener{
+            animarCiudad()
         }
     }
     // factor de escala
@@ -76,4 +82,38 @@ class FullscreenActivity : AppCompatActivity() {
         objectAnimator.start()
     }
 
+    var escala=1
+
+    private fun animarCiudad() = launch(uiContext) {
+        // aumentamos o disminuimos alternadamente
+        if (escala == 1) escala = 3 else escala = 1
+        // animacion: escalamos en la direccion X
+        val objectAnimator = ObjectAnimator.ofFloat(
+                ciudad,
+                "scaleY",
+                escala.toFloat())
+        objectAnimator.duration = 5000L
+        objectAnimator.interpolator
+
+        val objectAnimator2 = ObjectAnimator.ofFloat(
+                ciudad,
+                "scaleX",
+                escala.toFloat())
+        objectAnimator2.duration = 5000L
+        objectAnimator2.interpolator
+
+        val objectAnimator3 = ObjectAnimator.ofFloat(
+                ciudad,
+                "rotation",
+                0f,
+                360f)
+        objectAnimator3.duration = 5000L
+        objectAnimator3.interpolator
+
+        objectAnimator3.start()
+        objectAnimator2.start()
+        objectAnimator.start()
+
+
+    }
 }
