@@ -1,6 +1,7 @@
 package com.ejemplos.dam.procesossimultaneos
 
 import android.animation.ObjectAnimator
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import kotlinx.android.synthetic.main.activity_fullscreen.*
@@ -36,6 +37,7 @@ class FullscreenActivity : AppCompatActivity() {
 
         ciudad.setOnClickListener{
             animarCiudad()
+
         }
     }
     // factor de escala
@@ -113,6 +115,12 @@ class FullscreenActivity : AppCompatActivity() {
         objectAnimator3.start()
         objectAnimator2.start()
         objectAnimator.start()
+
+        delay(5000)
+
+        val secActivity=Intent(this@FullscreenActivity,SecondaryActivity::class.java)
+        startActivity(secActivity)
+        overridePendingTransition(R.anim.fadein,R.anim.fadeout)
 
 
     }
