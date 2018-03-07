@@ -5,10 +5,8 @@ import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import kotlinx.android.synthetic.main.activity_fullscreen.*
-import kotlinx.coroutines.experimental.Job
+import kotlinx.coroutines.experimental.*
 import kotlinx.coroutines.experimental.android.UI
-import kotlinx.coroutines.experimental.delay
-import kotlinx.coroutines.experimental.launch
 import org.jetbrains.anko.contentView
 import kotlin.coroutines.experimental.CoroutineContext
 
@@ -18,6 +16,7 @@ import kotlin.coroutines.experimental.CoroutineContext
 class FullscreenActivity : AppCompatActivity() {
     // dispatches execution onto the Android main UI thread
     private val uiContext: CoroutineContext = UI
+    private val contextoActual : CoroutineContext = CommonPool
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,7 +36,6 @@ class FullscreenActivity : AppCompatActivity() {
 
         ciudad.setOnClickListener{
             animarCiudad()
-
         }
     }
     // factor de escala
@@ -116,12 +114,14 @@ class FullscreenActivity : AppCompatActivity() {
         objectAnimator2.start()
         objectAnimator.start()
 
-        delay(5000)
+        delay(4500)
 
-        val secActivity=Intent(this@FullscreenActivity,SecondaryActivity::class.java)
+        transitionToActivity2()
+    }
+
+    private fun transitionToActivity2(){
+        val secActivity = Intent(this@FullscreenActivity, SecondaryActivity::class.java)
         startActivity(secActivity)
-        overridePendingTransition(R.anim.fadein,R.anim.fadeout)
-
-
+        overridePendingTransition(R.anim.fadein, R.anim.fadeout)
     }
 }
