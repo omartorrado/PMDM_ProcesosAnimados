@@ -92,14 +92,14 @@ class FullscreenActivity : AppCompatActivity() {
                 ciudad,
                 "scaleY",
                 escala.toFloat())
-        objectAnimator.duration = 5000L
+        objectAnimator.duration = 3000L
         objectAnimator.interpolator
 
         val objectAnimator2 = ObjectAnimator.ofFloat(
                 ciudad,
                 "scaleX",
                 escala.toFloat())
-        objectAnimator2.duration = 5000L
+        objectAnimator2.duration = 3000L
         objectAnimator2.interpolator
 
         val objectAnimator3 = ObjectAnimator.ofFloat(
@@ -107,14 +107,14 @@ class FullscreenActivity : AppCompatActivity() {
                 "rotation",
                 0f,
                 360f)
-        objectAnimator3.duration = 5000L
+        objectAnimator3.duration = 3000L
         objectAnimator3.interpolator
 
         objectAnimator3.start()
         objectAnimator2.start()
         objectAnimator.start()
 
-        delay(4500)
+        delay(2750)
 
         transitionToActivity2()
     }
