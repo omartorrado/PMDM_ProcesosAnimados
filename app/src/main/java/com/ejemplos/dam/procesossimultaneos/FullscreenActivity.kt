@@ -17,6 +17,16 @@ class FullscreenActivity : AppCompatActivity() {
     // dispatches execution onto the Android main UI thread
     private val uiContext: CoroutineContext = UI
     private val contextoActual : CoroutineContext = CommonPool
+    private var contador=0
+
+    companion object {
+
+
+    }
+
+    fun getCount(): Int {
+        return contador
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,18 +34,22 @@ class FullscreenActivity : AppCompatActivity() {
         // evento click en el círculo
         circulo.setOnClickListener {
             animarCirculo()
+            contador++
         }
         // evento click en el triangulo
         triangulo.setOnClickListener {
             animarTriangulo()
+            contador++
         }
         // evento click en el cuadrado
         cuadrado.setOnClickListener {
             animarCuadrado()
+            contador++
         }
 
         ciudad.setOnClickListener{
             animarCiudad()
+            contador++
         }
     }
     // factor de escala
